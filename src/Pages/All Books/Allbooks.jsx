@@ -21,7 +21,7 @@ const Allbooks = () => {
     }
   }, []);
   return (
-    <div id='topOfPage'>
+    <div className='min-h-screen' id='topOfPage'>
       <div className='flex flex-col justify-center mb-20'>
         <h1 className='text-4xl font-bold text-center mt-10'>ALL BOOKS</h1>
         <div className='flex gap-4 items-center justify-center'>

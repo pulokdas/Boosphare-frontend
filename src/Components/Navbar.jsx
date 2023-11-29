@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/Authprovider';
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   
-
+const email =user?.email;
   const handleSignOut = () => {
     logOut()
       .then()
@@ -58,6 +58,16 @@ const Navbar = () => {
   }
 >
   ALL BOOKS
+</NavLink>
+      </li>
+      <li>
+      <NavLink
+  to={`/mybooks/${email}`}
+  className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "text-white" : ""
+  }
+>
+  My books
 </NavLink>
       </li>
       </ul>

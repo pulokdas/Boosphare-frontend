@@ -12,6 +12,7 @@ import Privaterout from "./Privaterout";
 import Bookdeails from "../Pages/BookDetails/Bookdeails";
 import { Authprovider } from "../Provider/Authprovider";
 import Updatebook from "../Components/Updatebook";
+import Mybooks from "../Pages/Mybooks/Mybooks";
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
             }
             return await fetch(`http://localhost:5000/book/${bookId}`).then((res) => res.json());
           }
+        },
+        {
+          path: "/mybooks/:email",
+          element: <Privaterout><Mybooks/></Privaterout> ,
+          
         }
       ]
     },
