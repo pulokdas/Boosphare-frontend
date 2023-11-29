@@ -1,9 +1,21 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { AuthContext } from '../Provider/Authprovider';
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleSignOut = () => {
+    logOut()
+      .then()
+      .catch();
+  };
+
+  
+
   return (
-    <div data-aos="none" className="navbar sticky top-0 bg-gray-700 bg-opacity-50 shadow text-gray-800 z-50">
+    <div data-aos="none" className="navbar  bg-gray-700 bg-opacity-50 shadow text-gray-800 z-50">
     <div className="navbar-start">
       <div className="dropdown relative  ">
         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,17 +57,38 @@ const Navbar = () => {
     isPending ? "pending" : isActive ? "text-white" : ""
   }
 >
-  MY BOOKS
+  ALL BOOKS
 </NavLink>
       </li>
       </ul>
     </div>
-    <div className="navbar-end gap-5">
-      <button  className="btn   rounded bg-gray-700   text-gray-100  border-gray-700   hover:bg-gray-100 hover:text-gray-700">LOG IN</button>
+    <div className='navbar-end gap-5'>
+       
+    
+    {user ? (
+            <div className="flex gap-2">
+              
+              <button
+                onClick={handleSignOut}
+                className="btn btn-outline  rounded bg-gray-300   text-gray-700  border-gray-700   hover:bg-gray-700 hover:text-gray-100"
+              >
+                SIGN Out
+              </button>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Link to='/login'>
+    <button  className="btn   rounded bg-gray-700   text-gray-100  border-gray-700   hover:bg-gray-100 hover:text-gray-700">LOG IN</button>
+</Link>
+<Link to='/register'>
       <button  className="btn btn-outline  rounded bg-gray-300   text-gray-700  border-gray-700   hover:bg-gray-700 hover:text-gray-100">REGISTER</button>
-    </div>
+</Link>
+            </div>
+          )}
+          </div>
   </div>
   )
 }
 
 export default Navbar
+

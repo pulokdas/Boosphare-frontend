@@ -1,19 +1,31 @@
 import React from 'react'
+import Banner from '../../Components/Banner'
+import { Link, useLoaderData } from 'react-router-dom';
+import Book from '../../Components/Book';
 
 const Home = () => {
+  const allBooks = useLoaderData();
   return (
-    <div className='h-screen'>
-        <div className="hero h-5/6" style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}>
-  <div className="hero-overlay bg-opacity-60"></div>
-  <div className="hero-content text-center text-neutral-content">
-    <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-      <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button className="btn btn-primary">Get Started</button>
+   <div className='bg-[#F5F5F5]'>
+    <Banner/>
+    <h1 className=' text-3xl font-bold text-center my-5'>Books</h1>
+   <div>
+   <div className='grid grid-cols-3 w-11/12 mx-auto gap-x-10 gap-y-5'>
+    {
+  allBooks.slice(3, 6).map(book => <Book key={book.id} book={book} />)
+}
+
     </div>
-  </div>
-</div>
-    </div>
+   <div className='flex justify-center py-10'>
+   <Link to='/allbooks#topOfPage'>
+    
+    <button className='btn btn-outline  rounded bg-gray-300   text-gray-700  border-gray-700   hover:bg-gray-700 hover:text-gray-100'>See More</button>
+    </Link>
+    </div> 
+   </div>
+    
+   </div>
+
   )
 }
 
