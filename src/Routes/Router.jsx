@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         },
         {
             path: "/addbooks",
-            element: <Addbooks/>
+            element: <Privaterout><Addbooks/></Privaterout>
         },
         {
             path: "/login",
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/book/:id",
-          element: <Authprovider><Bookdeails/></Authprovider>,
+          element: <Privaterout><Bookdeails/></Privaterout>,
           loader: async ({params}) => {
             const bookId = params.id;
             if (!bookId) {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/update/:id",
-          element: <Updatebook/> ,
+          element: <Privaterout><Updatebook/></Privaterout> ,
           loader: async ({params}) => {
             const bookId = params.id;
             if (!bookId) {

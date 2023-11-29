@@ -63,7 +63,7 @@ Swal.fire({
       
       
     </div>
-    {isOwner && (
+    {isOwner ? (
         <div>
             <Link to={`/update/${_id}`}>
             
@@ -76,9 +76,18 @@ Swal.fire({
             <RiDeleteBinLine /> DELETE
           </h1>
         </div>
-      )}
+      ): <div>
+        <div className="tooltip" data-tip="You Can Only UPDATE or DELETE the books you Added">
+        <h1 className='text-green-500 btn btn-disabled btn-outline'>
+      <GrUpdate /> Update
+    </h1>
+      </div>
+    <div className="tooltip" data-tip="You Can Only UPDATE or DELETE the books you Added">
+    <h1  className='text-red-500 ml-3 btn btn-disabled btn-outline'>
+            <RiDeleteBinLine /> DELETE
+          </h1></div></div>}
     </div>
-    <div>
+    <div >
         <h1 className=' text-2xl font-medium'>StoryLine:</h1>
         <p>{description}</p>
       </div>

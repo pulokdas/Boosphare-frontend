@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Provider/Authprovider';
 
@@ -8,10 +8,10 @@ const  Updatebook = () => {
   const email = user?.email;
   const book =  useLoaderData();
   const {_id ,title, author, genre, publication, rating, description, image} = book;
-
+const navigate = useNavigate();
   
 
-const handleAddbook = async (e) =>{
+const handleupdatebook = async (e) =>{
   e.preventDefault();
   const form = e.target ;
   const title = form.title.value;
@@ -21,7 +21,7 @@ const handleAddbook = async (e) =>{
   const description = form.description.value;
   const rating = form.rating.value;
   const image = form.image.value;
-  const book ={
+  const updatedBook ={
     email,
     title,
     author,
@@ -32,18 +32,18 @@ const handleAddbook = async (e) =>{
     image
   }
   try {
-    const response = await fetch('http://localhost:5000/allbooks' , {
+    const response = await fetch(`http://localhost:5000/book/${_id}` , {
       method:'PUT',
       headers:{
         'content-Type' : 'application/json',
 
       },
-      body: JSON.stringify(book),
+      body: JSON.stringify(updatedBook),
     });
     if (response.ok) {
       Swal.fire({
         icon: "success",
-        title: "Product Added Successfully",
+        title: "Book  Updated Successfully",
         showClass: {
           popup: `
             animate__animated
@@ -59,6 +59,7 @@ const handleAddbook = async (e) =>{
           `
         }
       });
+      navigate("/");
     } else {
       Swal.fire({
         icon: "error",
@@ -84,7 +85,7 @@ const handleAddbook = async (e) =>{
     console.error('Error:', error);
   }
   e.target.reset();
-// console.log(product)
+
 }
 
 
@@ -93,7 +94,7 @@ const handleAddbook = async (e) =>{
        <div className=" w-full pb-16  flex flex-col items-center justify-center  overflow-hidden">
         <div className="md:w-8/12 p-10 bg-gray-700 bg-opacity-50 border-t-4 border-[#E6E6E6] rounded-md shadow-md border-top ">
           <h1 className="text-3xl font-bold  text-white text-center pb-4">UPDATE Book</h1>
-          <form onSubmit={handleAddbook} className="space-y-3">
+          <form onSubmit={handleupdatebook} className="space-y-3">
             <div className='flex flex-col md:flex-row md:gap-10'>
               <div className='md:w-1/2'>
                 <label className="label">
