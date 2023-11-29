@@ -1,7 +1,9 @@
 import React from 'react'
 import { FaRegHeart } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 const Book = ({book}) => {
-    const {title, author, genre, publication, rating, description, image} = book;
+    const {_id ,title, author, genre, publication, rating, description, image} = book;
+   console.log(_id);
   return (
     <div className="card card-side bg-gray-700 bg-opacity-70 shadow-xl">
     <div className=' w-40'><figure ><img className='w-40 h-72' src={image} alt="Movie"/></figure></div>
@@ -14,7 +16,11 @@ const Book = ({book}) => {
       <p>rating: <span className='text-white'>{rating}</span></p>
       </div>
       <div className="card-actions flex flex-col-reverse">
-      <button  className="btn w-full btn-sm  rounded bg-gray-700   text-gray-100  border-gray-700   hover:bg-gray-100 hover:text-gray-700"> View Details </button>
+      <Link className=' w-full'  to={`/book/${_id}`}>
+      <button  className="btn  btn-block btn-sm  rounded bg-gray-700   text-gray-100  border-gray-700   hover:bg-gray-100 hover:text-gray-700"> View Details </button>
+      
+      </Link>
+      
       <button  className="btn w-full btn-sm btn-outline  rounded bg-gray-300   text-gray-700  border-gray-700   hover:bg-gray-700 hover:text-gray-100"><FaRegHeart /> ADD to Favourite</button>
       </div>
     </div>

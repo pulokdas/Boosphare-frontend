@@ -41,7 +41,15 @@ const router = createBrowserRouter([
         {
           path: "/book/:id",
           element: <Bookdeails/>,
-          loader: (params)
+          loader: async ({params}) => {
+            const bookId = params.id;
+            if (!bookId) {
+              // Handle the case when id is undefined
+              console.error('Book ID is undefined');
+              return Promise.resolve(null); // or handle it as needed
+            }
+            return await fetch(`http://localhost:5000/book/${bookId}`).then((res) => res.json());
+          }
         }
       ]
     },
