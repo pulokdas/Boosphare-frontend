@@ -10,6 +10,7 @@ import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
 import Privaterout from "./Privaterout";
 import Bookdeails from "../Pages/BookDetails/Bookdeails";
+import { Authprovider } from "../Provider/Authprovider";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/book/:id",
-          element: <Bookdeails/>,
+          element: <Authprovider><Bookdeails/></Authprovider>,
           loader: async ({params}) => {
             const bookId = params.id;
             if (!bookId) {

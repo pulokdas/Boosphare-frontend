@@ -8,8 +8,8 @@ const Allbooks = () => {
 
   // Filter books based on search term
   const filteredBooks = allBooks.filter((book) =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  book && book.title && book.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
   
   useEffect(() => {
 

@@ -48,7 +48,7 @@ import { AuthContext } from '../../Provider/Authprovider';
 
     <div className='flex justify-center items-center h-screen'>
       <div class="relative flex flex-col rounded-xl bg-transparent bg-clip-border  text-center  shadow-none">
-  <h4 class="text-gray-700 font-bold block font-sans text-2xl font-semibold leading-snug tracking-normal  antialiased">
+  <h4 class="text-gray-700 font-bold block font-sans text-2xl  leading-snug tracking-normal  antialiased">
     LOG IN
   </h4>
   
