@@ -1,15 +1,48 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FaRegHeart } from 'react-icons/fa';
-import { useLoaderData, useParams } from 'react-router-dom'
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom'
 import { CiSaveDown2 } from "react-icons/ci";
 import { GrUpdate } from "react-icons/gr";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { AuthContext, Authprovider } from '../../Provider/Authprovider';
+import Swal from 'sweetalert2';
 const Bookdeails = () => {
    const book = useLoaderData();
    const{user} = useContext(AuthContext);
    const {_id ,title,email, author, genre, publication, rating, description, image} = book;
 const isOwner = user && user?.email === email;
+const navigate = useNavigate();
+const handleDelete =()=>{
+console.log(_id);
+Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+     
+      fetch(`http://localhost:5000/book/${_id}`,{
+        method: 'DELETE',
+      })
+      .then(res=> res.json())
+      .then(data=>{
+        if(data.deletedCount > 0){
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+        }
+        navigate("/");
+      })
+    }
+  });
+  
+}
 
   return (
     <div>
@@ -32,10 +65,14 @@ const isOwner = user && user?.email === email;
     </div>
     {isOwner && (
         <div>
+            <Link to={`/update/${_id}`}>
+            
           <h1 className='text-green-500 btn btn-outline'>
             <GrUpdate /> Update
           </h1>
-          <h1 className='text-red-500 ml-3 btn btn-outline'>
+            
+            </Link>
+          <h1 onClick={()=>{handleDelete()}} className='text-red-500 ml-3 btn btn-outline'>
             <RiDeleteBinLine /> DELETE
           </h1>
         </div>
