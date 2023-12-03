@@ -25,7 +25,7 @@ Swal.fire({
   }).then((result) => {
     if (result.isConfirmed) {
      
-      fetch(`http://localhost:5000/book/${_id}`,{
+      fetch(`https://booksphare-backend.vercel.app/book/${_id}`,{
         method: 'DELETE',
       })
       .then(res=> res.json())

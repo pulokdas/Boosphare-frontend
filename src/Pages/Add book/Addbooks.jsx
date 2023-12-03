@@ -29,7 +29,7 @@ const handleAddbook = async (e) =>{
     image
   }
   try {
-    const response = await fetch('http://localhost:5000/allbooks' , {
+    const response = await fetch('https://booksphare-backend.vercel.app/allbooks' , {
       method:'POST',
       headers:{
         'content-Type' : 'application/json',

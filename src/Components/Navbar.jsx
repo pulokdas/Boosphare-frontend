@@ -67,7 +67,7 @@ const email =user?.email;
     isPending ? "pending" : isActive ? "text-white" : ""
   }
 >
-  My books
+ MY BOOKS
 </NavLink>
       </li>
       </ul>

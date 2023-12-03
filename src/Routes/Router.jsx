@@ -22,12 +22,12 @@ const router = createBrowserRouter([
         {
             path: "/",
             element:<Home/>,
-            loader: ()=> fetch('http://localhost:5000/allbooks')
+            loader: ()=> fetch('https://booksphare-backend.vercel.app/allbooks')
         },
         {
             path:"/allbooks",
             element: <Privaterout><Allbooks/></Privaterout>,
-            loader: ()=> fetch('http://localhost:5000/allbooks')
+            loader: ()=> fetch('https://booksphare-backend.vercel.app/allbooks')
         },
         {
             path: "/addbooks",
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
               console.error('Book ID is undefined');
               return Promise.resolve(null); // or handle it as needed
             }
-            return await fetch(`http://localhost:5000/book/${bookId}`).then((res) => res.json());
+            return await fetch(`https://booksphare-backend.vercel.app/book/${bookId}`).then((res) => res.json());
           }
         },
         {
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
               console.error('Book ID is undefined');
               return Promise.resolve(null); // or handle it as needed
             }
-            return await fetch(`http://localhost:5000/book/${bookId}`).then((res) => res.json());
+            return await fetch(`https://booksphare-backend.vercel.app/book/${bookId}`).then((res) => res.json());
           }
         },
         {

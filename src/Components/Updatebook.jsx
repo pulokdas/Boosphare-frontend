@@ -32,7 +32,7 @@ const handleupdatebook = async (e) =>{
     image
   }
   try {
-    const response = await fetch(`http://localhost:5000/book/${_id}` , {
+    const response = await fetch(`https://booksphare-backend.vercel.app/book/${_id}` , {
       method:'PUT',
       headers:{
         'content-Type' : 'application/json',
@@ -128,7 +128,8 @@ const handleupdatebook = async (e) =>{
                 <input
                   type="text"
                   name='genre'
-                  placeholder={genre}
+                  // placeholder={genre}
+                  defaultValue={genre}
                   className="w-full text-[#E6E6E6] bg-gray-700 bg-opacity-60 input input-bordered"
                 />
               </div>
